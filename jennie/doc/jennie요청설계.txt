@@ -1,0 +1,135 @@
+# Whistle Project 요청 설계
+
+----------------------------------------------------
+# Main page 보기 요청
+요청내용	: /whistle/main.blp
+파라미터	: X
+컨트롤러	: com.githrd.whistle.controller.MainForm
+      뷰	: /WEB-INF/views/main.jsp
+
+
+# 회원관련 요청
+
+----------------------------------------------------
+# Login form 보기 요청
+요청내용	: /whistle/member/login.blp
+파라미터	: X
+컨트롤러	: com.githrd.whistle.controller.member.Login
+      뷰	: /WEB-INF/views/member/login.jsp
+로그인 한 경우/WEB-INF/views/main.jsp
+      
+----------------------------------------------------
+# Login 처리 요청
+요청내용	: /whistle/member/loginProc.blp
+파라미터	: id, pw
+컨트롤러	: com.githrd.whistle.controller.member.LoginProc
+      뷰	: /WEB-INF/views/main.jsp
+  	실패시	  /WEB-INF/views/member/login.jsp
+      
+----------------------------------------------------
+# Join Form 보기 요청
+요청내용	: /whistle/member/join.blp
+파라미터	: X
+컨트롤러	: com.githrd.whistle.controller.member.JoinForm
+      뷰	: /WEB-INF/views/whistle/member/join.jsp
+로그인 한 경우/WEB-INF/views/whistle/main.blp
+      
+----------------------------------------------------
+# Join 처리 요청
+요청내용	: /whistle/member/joinProc.blp
+파라미터	: name, id, pw, mail, tel, ano, gen
+컨트롤러	: com.githrd.whistle.controller.member.JoinProc
+      뷰	: 	성공 : /whistle/main.blp
+      			실패 : /whistle/main.blp
+      
+----------------------------------------------------
+# idCheck 처리 요청
+요청내용	: /whistle/member/idCheck.blp
+파라미터	: id
+컨트롤러	: com.githrd.whistle.controller.member.IdCheck
+      뷰	: json
+      
+----------------------------------------------------
+# memberList Form 보기 요청
+요청내용	: /whistle/member/memberList.blp
+파라미터	: X
+컨트롤러	: com.githrd.whistle.controller.member.MemberList
+      뷰	: /WEB-INF/views/member/memberList.jsp
+      
+----------------------------------------------------
+# memberInfo Form 보기 요청
+요청내용	: /whistle/member/memberInfo.blp
+파라미터	: mno
+컨트롤러	: com.githrd.whistle.controller.member.MemberInfo
+      뷰	: /WEB-INF/views/member/memberInfo.jsp
+      
+----------------------------------------------------
+# myInfo Form 보기 요청
+요청내용	: /whistle/member/myInfo.blp
+파라미터	: X (세션에서 꺼냄)
+컨트롤러	: com.githrd.whistle.controller.member.MyInfo
+      뷰	: /WEB-INF/views/member/memberInfo.jsp
+      
+----------------------------------------------------
+# 회원 탈퇴 요청
+요청내용	: /whistle/member/delInfo.blp
+파라미터	: mno, id(확인용)
+컨트롤러	: com.githrd.whistle.controller.member.DelInfo
+      뷰	: (redirect)
+      			성공시 : /whistle/main.blp
+      			실패시 : /whistle/member/myInfo.blp
+      
+----------------------------------------------------
+# 정보수정 폼 보기 요청
+요청내용	: /whistle/member/editInfo.blp
+파라미터	: mno
+컨트롤러	: com.githrd.whistle.controller.member.EditInfo
+      뷰	: /WEB-INF/views/member/editInfo.jsp
+      
+----------------------------------------------------
+# 정보수정 처리 요청
+요청내용	: /whistle/member/editProc.blp
+파라미터	: mno, pw, mail, tel, ano
+컨트롤러	: com.githrd.whistle.controller.member.EditProc
+      뷰	: (redirect)
+      			성공시 : /whistle/member/myInfo.blp
+      			실패시 : /whistle/member/editInfo.blp
+      			
+----------------------------------------------------
+
+# 방명록 관련 요청
+
+
+# 방명록 리스트 폼 보기 요청
+요청내용	: /whistle/guestBoard/gBoardList.blp
+파라미터	: [nowPage]
+컨트롤러	: com.githrd.whistle.controller.guestBoard.GuestBoard
+      뷰	: /WEB-INF/views/guestBoard/gBoardList.jsp
+      			
+----------------------------------------------------
+# 방명록 글쓰기 폼 보기 요청
+요청내용	: /whistle/guestBoard/gBoardWrite.blp
+파라미터	: nowPage
+컨트롤러	: com.githrd.whistle.controller.guestBoard.GBoardWrite
+      뷰	: /WEB-INF/views/guestBoard/gBoardWrite.jsp
+      			
+----------------------------------------------------
+# 방명록 글쓰기 처리 요청
+요청내용	: /whistle/guestBoard/gBoardWriteProc.blp
+파라미터	: body, nowPage
+컨트롤러	: com.githrd.whistle.controller.guestBoard.GBoardWriteProc
+      뷰	: redirect
+      			성공시 : /whistle/guestBoard/gBoardList.blp
+      			실패시 : /whistle/guestBoard/gBoardWrite.blp?nowPage=어쩌구
+      			
+----------------------------------------------------
+
+# 방명록 관련 요청
+
+
+# 댓글 게시판 폼 보기 요청
+요청내용	: /whistle/reboard/reboardList.blp
+파라미터	: [nowPage]
+컨트롤러	: com.githrd.whistle.controller.reboard.ReboardList
+      뷰	: /WEB-INF/views/guestBoard/reboardList.jsp
+      			
