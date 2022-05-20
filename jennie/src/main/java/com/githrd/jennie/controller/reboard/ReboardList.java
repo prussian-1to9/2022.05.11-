@@ -23,6 +23,7 @@ public class ReboardList implements BlpInter {
 		if(req.getParameter("nowPage")!=null) {
 			nowPage = Integer.parseInt(req.getParameter("nowPage"));
 		}
+		String msg = req.getParameter("msg");
 		
 		// 페이지 객체 만들기
 		ReboardDao rDao = new ReboardDao();
@@ -33,6 +34,9 @@ public class ReboardList implements BlpInter {
 		ArrayList<BoardVO> list = rDao.getList(page);
 		req.setAttribute("LIST", list);
 		req.setAttribute("PAGE", page);
+		if(msg != null) {
+			req.setAttribute("MSG", msg);
+		}
 		
 		return view;
 	}

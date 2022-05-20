@@ -124,7 +124,7 @@
       			
 ----------------------------------------------------
 
-# 방명록 관련 요청
+# 댓글 게시판 관련 요청
 
 
 # 댓글 게시판 폼 보기 요청
@@ -133,3 +133,63 @@
 컨트롤러	: com.githrd.whistle.controller.reboard.ReboardList
       뷰	: /WEB-INF/views/guestBoard/reboardList.jsp
       			
+----------------------------------------------------
+# 게시글 작성 폼 보기 요청
+요청내용	: /whistle/reboard/reboardWrite.blp
+파라미터	: nowPage
+컨트롤러	: com.githrd.whistle.controller.reboard.ReboardWrite
+      뷰	: /WEB-INF/views/guestBoard/reboardWrite.jsp
+      			
+----------------------------------------------------
+# 게시글 작성 처리 요청
+요청내용	: /whistle/reboard/reboardWriteProc.blp
+파라미터	: nowPage, mno, body
+컨트롤러	: com.githrd.whistle.controller.reboard.ReboardWriteProc
+      뷰	: redirect
+      			성공시 : /whistle/reboard/reboardList.blp
+      			실패시 : forward ==> redirect.jsp
+      				/whistle/reboard/reboardWrite.blp
+      			
+----------------------------------------------------
+# 댓글 작성 폼 보기 요청
+요청내용	: /whistle/reboard/reboardComment.blp
+파라미터	: nowPage, upno, body
+컨트롤러	: com.githrd.whistle.controller.reboard.ReboardComment
+      뷰	: /WEB-INF/views/reboard/reboardComment.jsp
+      			
+----------------------------------------------------
+# 댓글 작성 처리 요청
+요청내용	: /whistle/reboard/reboardCommentProc.blp
+파라미터	: nowPage, mno, upno, body
+컨트롤러	: com.githrd.whistle.controller.reboard.ReboardWriteProc
+      뷰	: forward
+      			성공시 : redirect.jsp
+      				/whistle/reboard/reboardList.blp
+      			실패시 : redirect.jsp
+      				/whisrlte/reboard/reboardWrite.blp
+      			
+----------------------------------------------------
+# 글 삭제 처리 요청
+요청내용	: /whistle/reboard/reboardDel.blp
+파라미터	: nowPage, rbno
+컨트롤러	: com.githrd.whistle.controller.reboard.ReboardDel
+      뷰	: forward : redirect.jsp
+      				/whistle/reboard/reboardList.blp
+      			
+----------------------------------------------------
+# 글 수정 폼 보기 요청
+요청내용	: /whistle/reboard/reboardEdit.blp
+파라미터	: nowPage, rbno
+컨트롤러	: com.githrd.whistle.controller.reboard.ReboardEdit
+      뷰	: /WEB-INF/views/reboard/reboardEdit.jsp
+      			
+----------------------------------------------------
+# 글 수정 처리 요청
+요청내용	: /whistle/reboard/reboardEditProc.blp
+파라미터	: nowPage, rbno, body
+컨트롤러	: com.githrd.whistle.controller.reboard.ReboardEditProc
+      뷰	: forward : redirect.jsp
+      			성공시 : /whistle/reboard/reboardList.blp
+      			실패시 : /whistle/reboard/reboardEdit.blp
+      			
+----------------------------------------------------
