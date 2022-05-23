@@ -35,6 +35,11 @@ $(function(){
 	
 	// 댓글 게시판 버튼
 	$('#rbtn').click(function(){
-		$(location).attr('href', '/whistle/reboard/reboardList.blp')
+		$(location).attr('href', '/whistle/reboard/reboardList.blp');
+	});
+	
+	// 파일 게시판 버튼
+	$('#fbtn').click(function(){
+		$(location).attr('href', '/whistle/board/boardList.blp');
 	});
 });

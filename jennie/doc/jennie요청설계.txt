@@ -131,14 +131,14 @@
 요청내용	: /whistle/reboard/reboardList.blp
 파라미터	: [nowPage]
 컨트롤러	: com.githrd.whistle.controller.reboard.ReboardList
-      뷰	: /WEB-INF/views/guestBoard/reboardList.jsp
+      뷰	: /WEB-INF/views/reoard/reboardList.jsp
       			
 ----------------------------------------------------
 # 게시글 작성 폼 보기 요청
 요청내용	: /whistle/reboard/reboardWrite.blp
 파라미터	: nowPage
 컨트롤러	: com.githrd.whistle.controller.reboard.ReboardWrite
-      뷰	: /WEB-INF/views/guestBoard/reboardWrite.jsp
+      뷰	: /WEB-INF/views/reboard/reboardWrite.jsp
       			
 ----------------------------------------------------
 # 게시글 작성 처리 요청
@@ -191,5 +191,33 @@
       뷰	: forward : redirect.jsp
       			성공시 : /whistle/reboard/reboardList.blp
       			실패시 : /whistle/reboard/reboardEdit.blp
+      			
+----------------------------------------------------
+
+# 파일 게시판 관련 요청
+
+
+# 파일 게시판 폼 보기 요청
+요청내용	: /whistle/board/boardList.blp
+파라미터	: X
+컨트롤러	: com.githrd.whistle.controller.reboard.BoardList
+      뷰	: /WEB-INF/views/board/boardList.jsp
+      			
+----------------------------------------------------
+# 게시글 작성 폼 보기 요청
+요청내용	: /whistle/board/boardWrite.blp
+파라미터	: X
+컨트롤러	: com.githrd.whistle.controller.reboard.BoardWrite
+      뷰	: /WEB-INF/views/board/boardWrite.jsp
+      			
+----------------------------------------------------
+# 게시글 작성 처리 요청
+요청내용	: /whistle/board/boardWriteProc.blp
+파라미터	: nowPage, mno, body
+컨트롤러	: com.githrd.whistle.controller.reboard.BoardWriteProc
+      뷰	: redirect
+      			성공시 : /whistle/board/boardList.jsp
+      			실패시 : forward : redirect.jsp
+      					/whistle/board/boardWrite.jsp
       			
 ----------------------------------------------------

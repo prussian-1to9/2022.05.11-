@@ -61,6 +61,8 @@
 						<%-- 전송용 태그 --%>
 						<input type="hidden" id="nowPage" name="nowPage" value="${param.nowPage}">
 						<input type="hidden" id="bno" name="bno" value="${DATA.bno}">
+						<%-- 데이터 비교용 태그 --%>
+						<input type="hidden" id="obody" name="obody" value="${DATA.body}">
 					</form>
 				</div>
 			</div>

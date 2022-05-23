@@ -176,6 +176,14 @@ $(document).ready(function(){
 			return;
 		}
 		
+		// 수정 전 글과 비교
+		var ori = $('#obody').val();
+		ori = ori.trim();
+		if(btxt == ori){
+			alert('수정 사항이 없습니다.');
+			return;
+		}
+		
 		// 200자 글자수 제한
 		if(btxt.length > 200){
 			btxt = btxt.substring(0, 200);
