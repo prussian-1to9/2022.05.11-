@@ -12,7 +12,7 @@
 <style type="text/css">
 	label {
 		font-size: 14pt;
-		font-weight: bold;
+		/* font-weight: bold; */
 		color: gray;
 		padding-right: 20px;
 		text-align: right;
@@ -26,7 +26,8 @@
 	<div class="w3-content mxw700">
 		<h1 class="w3-blue w3-padding w3-center w3-card-4">게시글 작성</h1>
 		<form method="POST" action="/whistle/board/boardWriteProc.blp" encType="multipart/form-data"
-				id="frm" name="frm" class="w3-col w3-card-4 w3-padding">
+				id="frm" name="frm" class="w3-col w3-card-4 frmpadding">
+			<input type="hidden" name="nowPage" id="nowPage" value="1">
 			<%-- 
 				우리는 이제까지, 서버와 통신시 Parameter(String) 방식의 통신을 했으나
 				파일 전송의 경우는 Stream 방식으로 전송이 이루어져야 한다.
@@ -38,22 +39,26 @@
 				
 				라고 기입해야지만 Stream 방식 전송이 가능하다.
 			--%>
-			<div class="w3-col w3-margin-top w3-margin-bottom pdr20">
-				<label for="title" class="w3-col m2">Title</label>
-				<input type="text" class="w3-col m10 w3-input w3-border">
+			<div class="w3-col w3-margin-top w3-margin-bottom">
+				<label for="title" class="w3-col s2">Title</label>
+				<input type="text" id="title" name="title" class="w3-col m10 w3-input w3-border">
 			</div>
-			<div class="w3-col w3-margin-bottom pdr20">
-				<label class="w3-col m2">File</label>
-				<div class="w3-col m10">
-					<input type="file" id="file1" name="file1" class="w3-input w3-border w3-margin-bottom">
-					<input type="file" id="file2" name="file2" class="w3-input w3-border w3-margin-bottom">
-					<input type="file" id="file3" name="file3" class="w3-input w3-border w3-margin-bottom">
+			<div class="w3-col w3-margin-bottom">
+				<label class="w3-col s2">File</label>
+				<div class="w3-col m10" id="filebox">
+					<input type="file" class="w3-input w3-border w3-margin-bottom upfile">
 				</div>
 			</div>
-			<div class="w3-col pdr20">
-				<label for="body" class="w3-col m2">글본문</label>
+			<div class="w3-col w3-margin-bottom" id="previewbox" style="display: none;">
+				<label class="w3-col s2">Preview</label>
+				<div class="w3-col m10 w3-center" id="preview">
+				</div>
+			</div>
+			<div class="w3-col">
+				<label for="body" class="w3-col s2">글본문</label>
 				<div class="w3-col m10">
-					<textarea class="w3-col w3-input w3-padding w3-border w3-margin-bottom" rows="10" style="resize: none;"></textarea>
+					<textarea class="w3-col w3-input w3-padding w3-border w3-margin-bottom" 
+							id="body" name="body" rows="10" style="resize: none;"></textarea>
 				</div>
 			</div>
 		</form>

@@ -37,7 +37,11 @@ public class FileUtil {
 	// MultipartRequest 세팅 함수
 	public void setMulti() {
 		path = this.getClass().getResource("/").getPath();	// 시스템 상 전체 경로 따오기
-		
+	/*
+		path 경로
+			==> 첨부하는 파일을 프로젝트에서 서비스하는 경우,
+				path = req.getSession().getServletContext().getRealPath("올라갈 폴더 이름");
+	 */
 		// WEB-INF 이전 주소만 따오기
 		path = path.substring(0, path.lastIndexOf("/WEB-INF")) + dir;
 // 확인	System.out.println("path : " + path);
@@ -111,6 +115,7 @@ public class FileUtil {
 			
 			// VO 만들어, 데이터 입력
 			FileVO fVO = new FileVO();
+			fVO.setId((String)req.getSession().getAttribute("SID"));
 			fVO.setOriname(oriname);
 			fVO.setSavename(savename);
 			fVO.setDir(dir);
@@ -126,7 +131,7 @@ public class FileUtil {
 	public void saveBackup(File file) {
 		bPath = this.getClass().getResource("/").getPath();
 		bPath = bPath.substring(0, bPath.indexOf("/source")) // jsp 폴더 까지 올라가야함
-				+ "/git/2022.05.11-/jennie/src/main/webapp/resources/upload";
+				+ "/git/2022.05.11-/jennie/src/main/webapp" + dir;
 		
 		File devFile = new File(bPath, file.getName());
 		FileInputStream fin = null;
@@ -150,5 +155,43 @@ public class FileUtil {
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	// Getter Setter
+	public ArrayList<FileVO> getList() {
+		return list;
+	}
+	public void setList(ArrayList<FileVO> list) {
+		this.list = list;
+	}
+	public HttpServletRequest getReq() {
+		return req;
+	}
+	public void setReq(HttpServletRequest req) {
+		this.req = req;
+	}
+	public MultipartRequest getMulti() {
+		return multi;
+	}
+	public void setMulti(MultipartRequest multi) {
+		this.multi = multi;
+	}
+	public String getDir() {
+		return dir;
+	}
+	public void setDir(String dir) {
+		this.dir = dir;
+	}
+	public String getPath() {
+		return path;
+	}
+	public void setPath(String path) {
+		this.path = path;
+	}
+	public String getbPath() {
+		return bPath;
+	}
+	public void setbPath(String bPath) {
+		this.bPath = bPath;
 	}
 }

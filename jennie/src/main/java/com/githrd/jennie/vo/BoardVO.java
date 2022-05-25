@@ -1,12 +1,14 @@
 package com.githrd.jennie.vo;
 
+import java.util.ArrayList;
 import java.sql.*;
 import java.text.*;
 public class BoardVO {
-	private int mno, bno, upno, rno, ano, cnt, step;
-	private String id, title, body, sdate, avatar;
+	private int mno, bno, upno, rno, ano, click, cnt, step;
+	private String id, title, body, sdate, stime, avatar;
 	private Date wdate;
 	private Time wtime;
+	ArrayList<FileVO> list;
 	
 	// Getter Setter
 	public int getMno() {
@@ -64,21 +66,26 @@ public class BoardVO {
 		this.sdate = sdate;
 	}
 	public void setSdate() {
-		SimpleDateFormat form1 = new SimpleDateFormat("yyyy.MM.dd");
-		SimpleDateFormat form2 = new SimpleDateFormat(" HH:mm:ss");
-		sdate = form1.format(wdate) + form2.format(wtime);
+		SimpleDateFormat form = new SimpleDateFormat("yyyy.MM.dd");
+		sdate = form.format(wdate);
 	}
 	public Date getWdate() {
 		return wdate;
 	}
 	public void setWdate(Date wdate) {
 		this.wdate = wdate;
+		setSdate();
 	}
 	public Time getWtime() {
 		return wtime;
 	}
+	public void setStime() {
+		SimpleDateFormat form = new SimpleDateFormat("HH:mm:ss");
+		stime = form.format(wtime);
+	}
 	public void setWtime(Time wtime) {
 		this.wtime = wtime;
+		setStime();
 	}
 	public String getAvatar() {
 		return avatar;
@@ -97,5 +104,23 @@ public class BoardVO {
 	}
 	public void setStep(int step) {
 		this.step = step;
+	}
+	public ArrayList<FileVO> getList() {
+		return list;
+	}
+	public void setList(ArrayList<FileVO> list) {
+		this.list = list;
+	}
+	public int getClick() {
+		return click;
+	}
+	public void setClick(int click) {
+		this.click = click;
+	}
+	public String getStime() {
+		return stime;
+	}
+	public void setStime(String stime) {
+		this.stime = stime;
 	}
 }

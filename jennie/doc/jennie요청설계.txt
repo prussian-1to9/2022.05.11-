@@ -213,7 +213,7 @@
 ----------------------------------------------------
 # 게시글 작성 처리 요청
 요청내용	: /whistle/board/boardWriteProc.blp
-파라미터	: nowPage, mno, body
+파라미터	: nowPage, title, body[, file]
 컨트롤러	: com.githrd.whistle.controller.reboard.BoardWriteProc
       뷰	: redirect
       			성공시 : /whistle/board/boardList.jsp

@@ -1,16 +1,14 @@
 $(document).ready(function(){
-	
-	// 페이지 버튼
+	/* 페이지 버튼 클릭이벤트 처리 */
 	$('.pbtn').click(function(){
 		// 페이지번호 읽고
 		var pno = $(this).attr('id');
 		// 페이지 번호 셋팅하고
 		$('#nowPage').val(pno);
 		// 폼 태그 전송
-		$('#frm').submit();
+		$('#pageFrm').submit();
 	});
 	
-	// 메뉴버튼 기능
 	$('.menubtn').not('#wbtn').click(function(){
 		var bid = $(this).attr('id');
 		
@@ -33,12 +31,71 @@ $(document).ready(function(){
 		$(location).attr('href', addr);
 	});
 	
-	// 글작성 버튼
 	$('#wbtn').click(function(){
-		$(location).attr('href', '/whistle/board/boardWrite.blp');
+		$("#pageFrm").attr('action', '/whistle/board/boardWrite.blp');
+		$('#pageFrm').submit();
+	});
+	
+	$('#filebox').on('change', '.upfile', function(e){
+		var txt = $(this).val();
+		var len = $('.upfile').length;
+		if(!txt && len > 1){
+			$('#img' + $(this).attr('id').substring(4)).remove();
+			$(this).remove();
+			if($('.pic').length == 0){
+				$('#previewbox').slideUp(100);
+			}
+		} else {
+			$('#filebox').append('<input type="file" class="w3-input w3-border w3-margin-bottom upfile">');
+			
+			$('#previewbox').stop().slideUp(300, function(){
+				
+				var box = document.createElement('div');
+				$(box).attr('class', 'inblock picbox');
+				var img = document.createElement('img');
+				$(img).attr('class', 'pic');
+				var path = URL.createObjectURL(e.target.files[0]);
+				$(img).attr('src', path);
+				$(box).append($(img));
+				$('#preview').append($(box));
+				
+				var cnt = $('.picbox').length;
+				for(i = 1; i <= cnt ; i++ ){
+					$('.picbox').eq(i-1).attr('id', 'img' + i);
+				}
+				$('#previewbox').stop().slideDown(300);
+			});
+		}
+		len = $('.upfile').length;
+		for(i = 1; i < len ; i++ ){
+			$('.upfile').eq(i-1).attr('id', 'file' + i);
+			$('.upfile').eq(i-1).attr('name', 'file' + i);
+		}
 	});
 	
 	$('#wpbtn').click(function(){
+		var title = $('#title').val();
+		if(!title) {
+			$('#title').focus();
+			return;
+		}
+		var body = $('#body').val();
+		if(!body){
+			$('#body').focus();
+			return;
+		}
+		
+		var el = $('input[type="file"]');
+		
+		for(i = 0 ; i < $(el).length ; i++ ){
+			var tmp = $(el).eq(i).val();
+			if(!tmp){
+				$(el).eq(i).prop('disabled', true);
+			}
+		}
+		
+		$('.upfile').last().prop('disabled', true);
+		
 		$('#frm').submit();
 	});
 });

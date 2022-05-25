@@ -5,7 +5,7 @@ import java.sql.*;
 public class FileVO {
 	private int fno, mno, rno, cnt;
 	private long len;
-	private String oriname, savename, dir, sdate, stime;
+	private String id, oriname, savename, dir, sdate, stime;
 	private Date wdate;
 	private Time wtime;
 	
@@ -91,5 +91,11 @@ public class FileVO {
 	public void setWtime(Time wtime) {
 		this.wtime = wtime;
 		setStime();
+	}
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
 	}
 }
