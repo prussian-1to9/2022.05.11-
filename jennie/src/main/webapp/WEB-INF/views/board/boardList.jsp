@@ -30,6 +30,12 @@
 </style>
 </head>
 <body>
+	<%-- 게시글 데이터 전송용 폼 --%>
+	<form method="POST" action="/whistle/board/boardDetail.blp" id="frm" name="frm">
+		<input type="hidden" name="nowPage" value="${PAGE.nowPage}">
+		<input type="hidden" name="bno" >
+	</form>
+	
 	<div class="w3-content mxw700">
 		<%-- header --%>
 		<header class="w3-col w3-card-4 mgb20">
@@ -48,7 +54,6 @@
 		</header>
 		
 		<div class="w3-col w3-white w3-card-4 w3-round-large pd15">
-			
 			<div class="w3-col w3-light-grey w3-center w3-border">
 				<div class="w3-col m3">
 					<div class="w3-col m5 w3-border-right">글번호</div>
@@ -99,7 +104,7 @@
 			</div>
 		</div>
 		
-		<%-- 데이터 전송용 폼 --%>
+		<%-- 페이지 데이터 전송용 폼 --%>
 		<form method="POST" action="/whistle/board/boardList.blp" id="pageFrm" name="pageFrm">
 			<input type="hidden" name="nowPage" id="nowPage" value="${PAGE.nowPage}">
 		</form>
